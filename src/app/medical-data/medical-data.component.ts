@@ -8,15 +8,9 @@ import medicalReference from 'src/data/blood_analysis.json';
 })
 export class MedicalDataComponent {
   @Input() public isReadOnly: boolean = true;
+  @Input() public doctor: any = {};
 
   public displayedColumns: String[] = ['Test', 'Donnée'];
-
-  public doctor: any = {
-    name: 'Lhermitte Julien',
-    email: 'j.lhermitte@doctolib.fr',
-    phone: '0475000000',
-    adress: "Pole medical - 26450 Cléon d'Andran",
-  };
 
   public data: any = {
     date: '01/08/2023',

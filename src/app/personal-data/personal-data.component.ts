@@ -14,6 +14,7 @@ export class PersonalDataComponent {
   @Input() allowCreationAndModification: Boolean = true;
 
   public isQRCodeDisplayed: Boolean = false;
+  public isAdmissionActive: Boolean = false;
 
   public sizeChart: any;
   public weightChart: any;
@@ -36,10 +37,44 @@ export class PersonalDataComponent {
 
   public userVaccines: any[] = [];
 
+  public doctor: any = {
+    name: 'Lhermitte Julien',
+    email: 'j.lhermitte@doctolib.fr',
+    phone: '0475000000',
+    adress: "Pole medical - 26450 Cléon d'Andran",
+  };
+
   public lastAdmission: any = {
     date: '25/08/2023',
     reason: 'Bras cassé',
     hopital: 'Clinique Kennedy - 26200 Montélimar',
+    treatment: [
+      {
+        name: 'Doliprane 1000mg',
+        delay: '1 cp matin midi et soir',
+        duree: '10 jours',
+      },
+      {
+        name: 'Tramadol 18mg',
+        delay: '2 cp matin midi et soir si douleurs',
+        duree: '3 jours',
+      },
+    ],
+    observations: '',
+    history: [
+      { date: '25/08/2023', hour: '15:00', action: 'Prise de doliprane 1 cp' },
+      {
+        date: '25/08/2023',
+        hour: '18:00',
+        action: 'Pose de résine sur bras droit',
+      },
+      {
+        date: '25/08/2023',
+        hour: '21:35',
+        action: 'Prise de doliprane 1 cp suite douleur',
+      },
+    ],
+    status: 'active',
   };
 
   public lastConsultation: any = {
@@ -64,6 +99,9 @@ export class PersonalDataComponent {
     };
     this.sizeChart = {};
     this.weightChart = {};
+    this.lastAdmission.status === 'active'
+      ? (this.isAdmissionActive = true)
+      : null;
   }
 
   public addNewVaccine(): void {

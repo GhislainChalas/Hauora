@@ -34,6 +34,7 @@ import { MedicalDataComponent } from './medical-data/medical-data.component';
 import { ReferenceComponent } from './reference/reference.component';
 import { DataService } from './services/data.service';
 import { DataProvider } from './providers/data.provider';
+import { AdmissionComponent } from './admission/admission.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { DataProvider } from './providers/data.provider';
     HistoryComponent,
     MedicalDataComponent,
     ReferenceComponent,
+    AdmissionComponent,
   ],
   imports: [
     BrowserModule,

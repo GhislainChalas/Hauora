@@ -1,6 +1,14 @@
 <div class="container mt-4">
 
     <mat-tab-group (selectedTabChange)="changeTab($event)">
+      <mat-tab class="mb-3" *ngIf="isAdmissionActive">
+        <ng-template mat-tab-label>
+          <mat-icon>local_hospital</mat-icon>
+          Admission en cours
+        </ng-template>
+        <app-admission [admission]="lastAdmission" [doctor]="doctor"></app-admission>
+      </mat-tab>
+
       <mat-tab class="mb-3">
         <ng-template mat-tab-label>
           <mat-icon>person</mat-icon>
@@ -10,9 +18,7 @@
           <mat-card-header class="justify-content-center">
             <mat-card-title>Informations personnelles</mat-card-title>
           </mat-card-header>
-          <mat-card-content>
-            
-           
+          <mat-card-content>     
             <div class="row mt-4 justify-content-around">
               <mat-form-field class=" col-5">
                 <mat-label>First name</mat-label>
@@ -169,7 +175,7 @@
             <mat-card-title>Données médicales</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <app-medical-data [isReadOnly]="isReadOnly"></app-medical-data>
+            <app-medical-data [isReadOnly]="isReadOnly" [doctor]="doctor"></app-medical-data>
           </mat-card-content>
         </mat-card>
       </mat-tab>
