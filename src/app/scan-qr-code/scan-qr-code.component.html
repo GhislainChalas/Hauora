@@ -1,0 +1,7 @@
+
+    <h3 class="text-center scan-code"> Please scan the QR code</h3>
+
+    <zxing-scanner class="qr-code-scanner mx-auto" (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+
+    <h3> Resultat = {{qrResultString }}</h3>

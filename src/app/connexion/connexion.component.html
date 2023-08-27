@@ -1,0 +1,2 @@
+<app-signin *ngIf="!isSignUpDisplayed" (displaySignUpvent)="displaySignUp($event)"></app-signin>
+<app-signup *ngIf="isSignUpDisplayed" (displaySignUpvent)="displaySignUp($event)"></app-signup>

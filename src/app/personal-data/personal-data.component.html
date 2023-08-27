@@ -1,0 +1,245 @@
+<div class="container mt-4">
+
+    <mat-tab-group (selectedTabChange)="changeTab($event)">
+      <mat-tab class="mb-3">
+        <ng-template mat-tab-label>
+          <mat-icon>person</mat-icon>
+          Informations personnelles
+        </ng-template>
+        <mat-card>
+          <mat-card-header class="justify-content-center">
+            <mat-card-title>Informations personnelles</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            
+           
+            <div class="row mt-4 justify-content-around">
+              <mat-form-field class=" col-5">
+                <mat-label>First name</mat-label>
+                <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="user.firstName">
+              </mat-form-field>
+            
+              <mat-form-field class="col-5">
+                <mat-label>Last name</mat-label>
+                <input matInput [readonly]="isReadOnly" [(ngModel)]="user.lastName">
+              </mat-form-field>
+
+              <mat-form-field class="col-5">
+              <mat-label>Usual name</mat-label>
+              <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="user.usualName">
+            </mat-form-field>
+          
+            <mat-form-field class="col-5">
+              <mat-label>Birth name</mat-label>
+              <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthName">
+            </mat-form-field>
+    
+                <mat-form-field class="col-5">
+                  <mat-label>Birth date</mat-label>
+                  <input matInput [readonly]="isReadOnly" [matDatepicker]="datepicker">
+                  <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #datepicker>
+                    <mat-datepicker-actions>
+                      <button mat-button matDatepickerCancel>Cancel</button>
+                      <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    </mat-datepicker-actions>
+                  </mat-datepicker>
+                </mat-form-field>
+    
+                <mat-form-field class="col-5">
+                  <mat-label>Birth place</mat-label>
+                  <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthPlace">
+                </mat-form-field>
+    
+              <div class="row justify-content-around">
+                <mat-form-field class="col-2">
+                  <mat-label>Blood type</mat-label>
+                  <mat-select [disabled]="isReadOnly">
+                    <mat-option *ngFor="let blood of bloods"ngDefaultControl  [(ngModel)]="user.bloodType">
+                      {{blood.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field class="col-2">
+                  <mat-label>Rhésus</mat-label>
+                  <mat-select [disabled]="isReadOnly">
+                    <mat-option *ngFor="let rhesus of rhesuses" ngDefaultControl [(ngModel)]="user.rhesus">
+                      {{rhesus.name}} 
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-3">
+                  <mat-label>Taille</mat-label>
+                  <input matInput [readonly]="isReadOnly" type="number" [(ngModel)]="user.size">
+                </mat-form-field>
+
+                    
+                <mat-form-field class="col-3">
+                  <mat-label>Poids</mat-label>
+                  <input matInput [readonly]="isReadOnly" type="number" [(ngModel)]="user.weight">
+                </mat-form-field>
+                </div>
+          </div>
+           
+            <div class="row  mt-4 justify-content-around" *ngIf="!allowCreationAndModification">
+
+              <!-- dernière admission card -->
+            <mat-card class="col-5 admission-card">
+              <mat-card-header class="justify-content-center">
+                <mat-card-title>Dernière admission</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row mt-4 justify-content-around">
+                  <mat-form-field class="col-4">
+                    <mat-label>Date</mat-label>
+                    <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="lastAdmission.date">
+                  </mat-form-field>
+                  <mat-form-field class="col-6">
+                    <mat-label>Motif</mat-label>
+                    <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="lastAdmission.reason">
+                  </mat-form-field>
+                </div>
+
+                  <mat-form-field class="col-12">
+                    <mat-label>Hôpital</mat-label>
+                    <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="lastAdmission.hopital">
+                  </mat-form-field>
+
+                  <mat-card-actions class="justify-content-between">
+                    <button mat-raised-button> <mat-icon>leaderboard</mat-icon>Historique</button>
+                    <button mat-raised-button> <mat-icon>medical_information</mat-icon>Nouvelle admission</button>
+                  </mat-card-actions>
+              </mat-card-content>
+  
+            </mat-card>
+
+              <mat-card class="col-5 medical-card">
+                <mat-card-header class="justify-content-center">
+                  <mat-card-title>Dernière consultation</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="row mt-4 justify-content-around">
+                    <mat-form-field class="col-4">
+                      <mat-label>Date</mat-label>
+                      <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="lastConsultation.date">
+                    </mat-form-field>
+
+                    <mat-form-field class="col-6">
+                      <mat-label>Motif</mat-label>
+                      <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="lastConsultation.reason">
+                    </mat-form-field>
+
+                  </div>
+                    <mat-form-field class="col-12">
+                      <mat-label>Médecin</mat-label>
+                      <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="lastConsultation.doctor">
+                    </mat-form-field>
+
+                    <mat-card-actions class="justify-content-between">
+                      <button mat-raised-button> <mat-icon>leaderboard</mat-icon>Historique</button>
+                      <button mat-raised-button> <mat-icon>medical_information</mat-icon>Nouvelle consultation</button>
+                    </mat-card-actions>
+                </mat-card-content>
+
+
+            </mat-card>
+          </div>
+  
+            <div class="row justify-content-center" *ngIf="allowCreationAndModification">
+            <button class="col-4 justify-content-center" mat-raised-button color="primary" (click)="isQRCodeDisplayed = !isQRCodeDisplayed"> 
+              <span class="material-icons pr-3">
+                qr_code_2
+                </span>
+                 Sauvegarder et Génerer un QR code unique</button>
+                <app-generate-qr-code *ngIf="isQRCodeDisplayed" [user]="user"></app-generate-qr-code>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+    
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>monitor_heart</mat-icon>
+          Données médicales
+        </ng-template>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Données médicales</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <app-medical-data [isReadOnly]="isReadOnly"></app-medical-data>
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>vaccines</mat-icon>
+          Vaccins
+        </ng-template>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Vaccins</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            
+            <div *ngIf="userVaccines.length == 0" class="row justify-content-center">
+                <p> Aucun vaccin n'a encore été enregistré</p>
+                <div class="row justify-content-center">
+                    <button class="col-4 justify-content-center" mat-raised-button color="primary" (click)="addNewVaccine()"> 
+                      <span class="material-icons pr-3">
+                        vaccines
+                        </span>
+                        Ajouter un nouveau vaccin</button>
+                    </div>
+            </div>
+
+            <div *ngIf="userVaccines.length > 0">
+            <div *ngFor="let vaccine of userVaccines" class="row mt-4 justify-content-around">
+              
+                <mat-form-field class="col-4">
+                  <mat-label>Nom du vaccin</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let vaccine of vaccinesData.vaccines" [value]="vaccine.name">
+                      {{vaccine.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-3">
+                    <mat-label>Numéro de lot</mat-label>
+                    <input matInput type="number" [value]="vaccine.lot">
+                  </mat-form-field>               
+      
+                <mat-form-field class="col-4">
+                    <mat-label>Vaccination date</mat-label>
+                    <input matInput [matDatepicker]="datepicker" [value]="vaccine.date">
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+    
+      <mat-tab *ngIf="!allowCreationAndModification">
+        <ng-template mat-tab-label>
+          <mat-icon>leaderboard</mat-icon>
+          Historique
+        </ng-template>
+        <app-history [isHistoryTabActive]="isHistoryTabActive"></app-history>
+      </mat-tab>
+    </mat-tab-group>
+   </div>
+  
+  <div class="container mt-3"> 
+  </div>

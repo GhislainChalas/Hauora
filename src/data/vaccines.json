@@ -1,0 +1,23 @@
+{
+    "vaccines": [
+        {"id": 1, "name": "Coqueluche"},
+        {"id": 2, "name": "Diphtérie"},
+        {"id": 3, "name": "Encéphalites à tiques"},
+        {"id": 4, "name": "Encéphalites japonaise"},
+        {"id": 5, "name": "Fièvre jaune"},
+        {"id": 6, "name": "Grippe"},
+        {"id": 7, "name": "Hépatite A"},
+        {"id": 8, "name": "Hépatite B"},
+        {"id": 9, "name": "Leptospirose"},
+        {"id": 10, "name": "Méningite à méningocoques"},
+        {"id": 11, "name": "Oreillons"},
+        {"id": 12, "name": "Poliomyélite"},
+        {"id": 13, "name": "Rage"},
+        {"id": 14, "name": "Rougeole"},
+        {"id": 15, "name": "Rubéole"},
+        {"id": 16, "name": "Tétanos"},
+        {"id": 17, "name": "Tuberculose"},
+        {"id": 18, "name": "Typhoïde"},
+        {"id": 19, "name": "Varicelle"}
+    ]
+}

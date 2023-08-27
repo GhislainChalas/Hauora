@@ -1,0 +1,21 @@
+  
+mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+ }
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+}
+
+.example-container {
+    width: 100%;
+    height: 100%;
+    margin: 12px;
+  }
