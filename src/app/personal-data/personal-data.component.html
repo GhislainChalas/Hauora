@@ -4,7 +4,7 @@
       <mat-tab class="mb-3" *ngIf="isAdmissionActive">
         <ng-template mat-tab-label>
           <mat-icon>local_hospital</mat-icon>
-          Admission en cours
+            Admission en cours
         </ng-template>
         <app-admission [admission]="lastAdmission" [doctor]="doctor"></app-admission>
       </mat-tab>
@@ -12,7 +12,7 @@
       <mat-tab class="mb-3">
         <ng-template mat-tab-label>
           <mat-icon>person</mat-icon>
-          Informations personnelles
+            Informations personnelles
         </ng-template>
         <mat-card>
           <mat-card-header class="justify-content-center">
@@ -52,7 +52,7 @@
     
                 <mat-form-field class="col-5">
                   <mat-label>Birth date</mat-label>
-                  <input matInput [readonly]="isReadOnly" [matDatepicker]="datepicker">
+                  <input matInput [(ngModel)]="user.birthDate" [readonly]="isReadOnly" [matDatepicker]="datepicker">
                   <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                   <mat-datepicker #datepicker>
                     <mat-datepicker-actions>
@@ -168,7 +168,7 @@
       <mat-tab >
         <ng-template mat-tab-label>
           <mat-icon>monitor_heart</mat-icon>
-          Données médicales
+            Données médicales
         </ng-template>
         <mat-card>
           <mat-card-header>
@@ -249,7 +249,7 @@
       <mat-tab >
         <ng-template mat-tab-label>
           <mat-icon>leaderboard</mat-icon>
-          Historique
+            Historique
         </ng-template>
         <app-history [isHistoryTabActive]="isHistoryTabActive"></app-history>
       </mat-tab>

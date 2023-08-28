@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { ConnexionComponent } from './connexion/connexion.component';
@@ -41,6 +42,7 @@ import {
   HttpClientModule,
   HttpHandler,
 } from '@angular/common/http';
+import { ModalAdmissionActionComponent } from './dialog/modal-admission-action/modal-admission-action.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import {
     MedicalDataComponent,
     ReferenceComponent,
     AdmissionComponent,
+    ModalAdmissionActionComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import {
     MatTableModule,
     MatStepperModule,
     MatTooltipModule,
+    MatDialogModule,
   ],
   providers: [DataService, DataProvider, HttpClient],
   bootstrap: [AppComponent],

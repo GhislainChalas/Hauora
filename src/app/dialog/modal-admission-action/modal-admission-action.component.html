@@ -1,0 +1,29 @@
+<h3 mat-dialog-title class="text-center">Nouvelle action</h3>
+<div mat-dialog-content class="row justify-content-around">
+      <mat-form-field class="col-6">
+        <mat-label>Date</mat-label>
+        <input matInput  [(ngModel)]="action.date" [readonly]="false" [matDatepicker]="datepicker">
+        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="col-6">
+        <mat-label>Heure</mat-label>
+        <input matInput [readonly]="false" type="time" [(ngModel)]="action.hour">
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label>Action</mat-label>
+        <input [readonly]="false" matInput type="text" [(ngModel)]="action.action">
+      </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="action">Enregistrer</button>
+</div>

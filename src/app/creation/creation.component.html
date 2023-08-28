@@ -1,6 +1,9 @@
 <mat-stepper orientation="vertical" [linear]="true" #stepper>
     <mat-step>
-        <ng-template matStepLabel>Informations personnelles</ng-template>
+        <ng-template matStepLabel>
+            <span class="material-icons align-middle">
+            badge
+            </span> Identité</ng-template>
         <mat-card>
             <mat-card-content >     
             <div class="row mt-4 justify-content-around">
@@ -26,7 +29,7 @@
 
                 <mat-form-field class="col-5">
                     <mat-label>Birth date</mat-label>
-                    <input matInput  [matDatepicker]="datepicker">
+                    <input matInput [matDatepicker]="datepicker" [(ngModel)]="user.birthDate">
                     <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker #datepicker>
                     <mat-datepicker-actions>
@@ -41,152 +44,172 @@
                     <input matInput  [(ngModel)]="user.birthPlace">
                 </mat-form-field>
 
-                <mat-form-field class="col-5">
-                    <mat-label>E mail</mat-label>
-                    <input matInput  [(ngModel)]="user.email">
-                </mat-form-field>
-    
-                <mat-form-field class="col-5">
-                    <mat-label>Phone</mat-label>
-                    <input matInput  [(ngModel)]="user.phone">
-                </mat-form-field>
-
-                <mat-form-field class="col-5">
-                    <mat-label>Adresse</mat-label>
-                    <input  matInput type="text" [(ngModel)]="user.address">
-                </mat-form-field>
-                
-                <mat-form-field class="col-5">
-                    <mat-label>Code postal</mat-label>
-                    <input matInput  [(ngModel)]="user.zipCode">
-                </mat-form-field>
-    
-                <mat-form-field class="col-5">
-                    <mat-label>Ville</mat-label>
-                    <input matInput  [(ngModel)]="user.city">
-                </mat-form-field>
-    
-                    <mat-form-field class="col-5">
-                        <mat-label>Nationality</mat-label>
-                        <mat-select>
-                        <mat-option *ngFor="let country of countries" ngDefaultControl [(ngModel)]="user.nationality">
-                            <img class="flag" [src]="country.flag">{{country.name_fr}}
-                        </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                
-            </div>
+                </div>
             </mat-card-content>
         </mat-card>
     </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Personnes à prévenir</ng-template>
-        <mat-card>
-            <mat-card-content>     
-            <div class="row mt-4 justify-content-around" *ngFor="let people of user.emergencyPeople">
-                <mat-form-field class=" col-5">
-                <mat-label>First name</mat-label>
-                <input matInput type="text" [(ngModel)]="people.firstName">
-                </mat-form-field>
-            
-                <mat-form-field class="col-5">
-                <mat-label>Last name</mat-label>
-                <input matInput  [(ngModel)]="people.lastName">
-                </mat-form-field>
-
-                <mat-form-field class="col-5">
-                    <mat-label>E mail</mat-label>
-                    <input matInput  [(ngModel)]="people.email">
-                </mat-form-field>
-    
-                <mat-form-field class="col-5">
-                    <mat-label>Phone</mat-label>
-                    <input matInput  [(ngModel)]="people.phone">
-                </mat-form-field>
-
-                <mat-form-field class="col-5">
-                <mat-label>Adresse</mat-label>
-                <input  matInput type="text" [(ngModel)]="people.address">
-            </mat-form-field>
-            
-            <mat-form-field class="col-5">
-                <mat-label>Code postal</mat-label>
-                <input matInput  [(ngModel)]="people.zipCode">
-            </mat-form-field>
-
-            <mat-form-field class="col-5">
-                <mat-label>Ville</mat-label>
-                <input matInput  [(ngModel)]="people.city">
-            </mat-form-field>
-
-                <mat-form-field class="col-5">
-                    <mat-label>Nationality</mat-label>
-                    <mat-select>
-                    <mat-option *ngFor="let country of countries" ngDefaultControl [(ngModel)]="people.nationality">
-                        <img class="flag" [src]="country.flag">{{country.name_fr}}
-                    </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <mat-step>
+                    <ng-template matStepLabel>
+                        <span class="material-icons align-middle">
+                        travel_explore
+                        </span> Coordonnées</ng-template>
+                    <mat-card>
+                    <mat-card-content>
+                        <div class="row mt-4 justify-content-around">
+                            <mat-form-field class="col-5">
+                                <mat-label>E mail</mat-label>
+                                <input matInput  [(ngModel)]="user.email">
+                            </mat-form-field>
                 
-            </div>
-            </mat-card-content>
-        </mat-card>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Données médicales</ng-template>
-        <mat-card>
-            <mat-card-content >     
-            <div class="row mt-4 justify-content-around">
-                <mat-form-field class=" col-5">
-                <mat-label>Social security number</mat-label>
-                <input matInput type="text" [(ngModel)]="user.socialSecurityNumber">
-                </mat-form-field>
-            
-                <div class="row col-5 justify-content-between">
-                    <mat-form-field class="col-5">
-                        <mat-label>Blood type</mat-label>
-                        <mat-select>
-                        <mat-option *ngFor="let blood of bloods"ngDefaultControl  [(ngModel)]="user.bloodType">
-                            {{blood.name}}
-                        </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-    
-                    <mat-form-field class="col-5">
-                        <mat-label>Rhésus</mat-label>
-                        <mat-select>
-                        <mat-option *ngFor="let rhesus of rhesuses" ngDefaultControl [(ngModel)]="user.rhesus">
-                            {{rhesus.name}} 
-                        </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    </div>
-                    <div class="row col-5 justify-content-between">
-                    <mat-form-field class="col-5">
-                        <mat-label>Taille</mat-label>
-                        <input matInput  type="number" [(ngModel)]="user.size">
-                    </mat-form-field>
-    
+                            <mat-form-field class="col-5">
+                                <mat-label>Phone</mat-label>
+                                <input matInput  [(ngModel)]="user.phone">
+                            </mat-form-field>
+
+                            <mat-form-field class="col-5">
+                                <mat-label>Adresse</mat-label>
+                                <input  matInput type="text" [(ngModel)]="user.address">
+                            </mat-form-field>
+                            
+                            <mat-form-field class="col-5">
+                                <mat-label>Code postal</mat-label>
+                                <input matInput  [(ngModel)]="user.zipCode">
+                            </mat-form-field>
+                
+                            <mat-form-field class="col-5">
+                                <mat-label>Ville</mat-label>
+                                <input matInput  [(ngModel)]="user.city">
+                            </mat-form-field>
+                
+                                <mat-form-field class="col-5">
+                                    <mat-label>Nationality</mat-label>
+                                    <mat-select>
+                                    <mat-option *ngFor="let country of countries" ngDefaultControl [(ngModel)]="user.nationality">
+                                        <img class="flag" [src]="country.flag">{{country.name_fr}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                
+                        </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>
+                        <span class="material-icons align-middle">
+                            local_phone
+                            </span> Personnes à prévenir</ng-template>
+                    <mat-card>
+                        <mat-card-content>     
+                        <div class="row mt-4 justify-content-around" *ngFor="let people of user.emergencyPeople">
+                            <mat-form-field class=" col-5">
+                            <mat-label>First name</mat-label>
+                            <input matInput type="text" [(ngModel)]="people.firstName">
+                            </mat-form-field>
                         
-                    <mat-form-field class="col-5">
-                        <mat-label>Poids</mat-label>
-                        <input matInput  type="number" [(ngModel)]="user.weight">
-                    </mat-form-field>
-                    </div>
+                            <mat-form-field class="col-5">
+                            <mat-label>Last name</mat-label>
+                            <input matInput  [(ngModel)]="people.lastName">
+                            </mat-form-field>
 
-            </div>
-            </mat-card-content>
-        </mat-card>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Créer le patient et générer le QR Code</ng-template>
-        <div class="row justify-content-center">
-            <button class="col-4 justify-content-center" mat-raised-button color="primary" (click)="isQRCodeDisplayed = !isQRCodeDisplayed"> 
-              <span class="material-icons pr-3">
-                qr_code_2
-                </span>
-                 Sauvegarder et Génerer un QR code unique</button>
-                <app-generate-qr-code *ngIf="isQRCodeDisplayed" [user]="user"></app-generate-qr-code>
-            </div>
-    </mat-step>
+                            <mat-form-field class="col-5">
+                                <mat-label>E mail</mat-label>
+                                <input matInput  [(ngModel)]="people.email">
+                            </mat-form-field>
+                
+                            <mat-form-field class="col-5">
+                                <mat-label>Phone</mat-label>
+                                <input matInput  [(ngModel)]="people.phone">
+                            </mat-form-field>
+
+                            <mat-form-field class="col-5">
+                            <mat-label>Adresse</mat-label>
+                            <input  matInput type="text" [(ngModel)]="people.address">
+                        </mat-form-field>
+                        
+                        <mat-form-field class="col-5">
+                            <mat-label>Code postal</mat-label>
+                            <input matInput  [(ngModel)]="people.zipCode">
+                        </mat-form-field>
+
+                        <mat-form-field class="col-5">
+                            <mat-label>Ville</mat-label>
+                            <input matInput  [(ngModel)]="people.city">
+                        </mat-form-field>
+
+                            <mat-form-field class="col-5">
+                                <mat-label>Nationality</mat-label>
+                                <mat-select>
+                                <mat-option *ngFor="let country of countries" ngDefaultControl [(ngModel)]="people.nationality">
+                                    <img class="flag" [src]="country.flag">{{country.name_fr}}
+                                </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            
+                        </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>
+                        <span class="material-icons align-middle">
+                           medical_services
+                            </span> Données médicales</ng-template>
+                    <mat-card>
+                        <mat-card-content >     
+                        <div class="row mt-4 justify-content-around">
+                            <mat-form-field class=" col-5">
+                            <mat-label>Social security number</mat-label>
+                            <input matInput type="text" [(ngModel)]="user.socialSecurityNumber">
+                            </mat-form-field>
+                        
+                            <div class="row col-5 justify-content-between">
+                                <mat-form-field class="col-5">
+                                    <mat-label>Blood type</mat-label>
+                                    <mat-select>
+                                    <mat-option *ngFor="let blood of bloods"ngDefaultControl  [(ngModel)]="user.bloodType">
+                                        {{blood.name}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                
+                                <mat-form-field class="col-5">
+                                    <mat-label>Rhésus</mat-label>
+                                    <mat-select>
+                                    <mat-option *ngFor="let rhesus of rhesuses" ngDefaultControl [(ngModel)]="user.rhesus">
+                                        {{rhesus.name}} 
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                </div>
+                                <div class="row col-5 justify-content-between">
+                                <mat-form-field class="col-5">
+                                    <mat-label>Taille</mat-label>
+                                    <input matInput  type="number" [(ngModel)]="user.size">
+                                </mat-form-field>
+                
+                                    
+                                <mat-form-field class="col-5">
+                                    <mat-label>Poids</mat-label>
+                                    <input matInput  type="number" [(ngModel)]="user.weight">
+                                </mat-form-field>
+                                </div>
+
+                        </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel><span class="material-icons pr-3 align-middle">
+                        qr_code_2
+                        </span> Créer le patient et générer le QR Code</ng-template>
+                    <div class="row justify-content-center">
+                        <button class="col-4 justify-content-center" mat-raised-button color="primary" (click)="isQRCodeDisplayed = !isQRCodeDisplayed"> 
+                        <span class="material-icons pr-3">
+                            qr_code_2
+                            </span>
+                            Sauvegarder et Génerer un QR code unique</button>
+                            <app-generate-qr-code *ngIf="isQRCodeDisplayed" [user]="user"></app-generate-qr-code>
+                        </div>
+                </mat-step>
 </mat-stepper>

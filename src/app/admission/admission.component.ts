@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalAdmissionActionComponent } from '../dialog/modal-admission-action/modal-admission-action.component';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-admission',
@@ -11,4 +14,16 @@ export class AdmissionComponent {
 
   public displayedTreatmentColumns: string[] = ['name', 'delay', 'duree'];
   public displayedHistoryColumns: string[] = ['date', 'hour', 'action'];
+
+  constructor(private dialog: MatDialog) {}
+
+  public openDialog(): void {
+    this.dialog
+      .open(ModalAdmissionActionComponent, { disableClose: true })
+      .afterClosed()
+      .subscribe((data) => {
+        data.date = data.date.toDateString();
+        this.admission.history = this.admission.history.concat([data]);
+      });
+  }
 }
