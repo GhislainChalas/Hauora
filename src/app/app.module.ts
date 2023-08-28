@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { AppComponent } from './app.component';
 import { ConnexionComponent } from './connexion/connexion.component';
@@ -35,6 +36,11 @@ import { ReferenceComponent } from './reference/reference.component';
 import { DataService } from './services/data.service';
 import { DataProvider } from './providers/data.provider';
 import { AdmissionComponent } from './admission/admission.component';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,6 +61,7 @@ import { AdmissionComponent } from './admission/admission.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -72,9 +79,10 @@ import { AdmissionComponent } from './admission/admission.component';
     MatNativeDateModule,
     MatTabsModule,
     MatTableModule,
+    MatStepperModule,
     MatTooltipModule,
   ],
-  providers: [DataService, DataProvider],
+  providers: [DataService, DataProvider, HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

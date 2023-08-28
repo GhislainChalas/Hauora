@@ -13,14 +13,10 @@ export class PersonalDataComponent {
   @Input() isReadOnly: boolean = true;
   @Input() allowCreationAndModification: Boolean = true;
 
-  public isQRCodeDisplayed: Boolean = false;
   public isAdmissionActive: Boolean = false;
-
   public sizeChart: any;
   public weightChart: any;
-
   public isHistoryTabActive: Boolean = false;
-
   public vaccinesData = vaccinesData;
 
   public bloods = [
@@ -33,6 +29,11 @@ export class PersonalDataComponent {
   public rhesuses = [
     { value: 1, name: '-' },
     { value: 2, name: '+' },
+  ];
+
+  public vaccinesType = [
+    { value: 1, name: 'Première injection' },
+    { value: 2, name: 'Rappel' },
   ];
 
   public userVaccines: any[] = [];
@@ -90,12 +91,30 @@ export class PersonalDataComponent {
       lastName: '',
       usualName: '',
       birthName: '',
+      nationality: '',
+      phone: '',
+      email: '',
+      zipCode: '',
+      address: '',
+      country: '',
+      city: '',
       bloodType: '',
       rhesus: '',
       birthDate: '',
       birthPlace: '',
       weight: 65,
       size: 160,
+      emergencyPeople: [
+        {
+          firstName: '',
+          lastName: '',
+          address: '',
+          zipCode: '',
+          city: '',
+          nationality: '',
+        },
+      ],
+      socialSecurityNumber: '',
     };
     this.sizeChart = {};
     this.weightChart = {};
@@ -105,10 +124,14 @@ export class PersonalDataComponent {
   }
 
   public addNewVaccine(): void {
-    this.userVaccines.push({ name: '', date: '', lot: '' });
+    this.userVaccines.push({ name: '', date: '', lot: '', type: '' });
   }
 
   public changeTab(event: any): void {
-    if (event.index === 3) this.isHistoryTabActive = true;
+    if (
+      (event.index === 4 && this.isAdmissionActive) ||
+      (event.index === 3 && !this.isAdmissionActive)
+    )
+      this.isHistoryTabActive = true;
   }
 }

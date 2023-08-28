@@ -85,5 +85,56 @@
     Prises de sang
 </button>
 
+<div class="row justify-content-around mt-4">
+  <mat-card class="col-5" *ngFor="let people of emergencyPeople">
+    <mat-card-title class="text-center">
+        Personnes à prévenir en cas d'urgence
+    </mat-card-title>
+    <mat-card-content>
+        <div class="row justify-content-around">
+        <mat-form-field class="col-5">
+            <mat-label>Nom</mat-label>
+            <input [readonly]="true" matInput type="text" [(ngModel)]="people.firstName">
+          </mat-form-field>
+        
+          <mat-form-field class="col-5">
+            <mat-label>Prénom</mat-label>
+            <input matInput [readonly]="true" [(ngModel)]="people.LastName">
+          </mat-form-field>
+         
+          <mat-form-field class="col-5">
+            <mat-label>Adresse</mat-label>
+            <input  matInput [readonly]="true" type="text" [(ngModel)]="people.address">
+        </mat-form-field>
+        
+        <mat-form-field class="col-5">
+            <mat-label>Code postal</mat-label>
+            <input matInput [readonly]="true" [(ngModel)]="people.zipCode">
+        </mat-form-field>
+
+        <mat-form-field class="col-5">
+            <mat-label>Ville</mat-label>
+            <input matInput [readonly]="true" [(ngModel)]="people.city">
+        </mat-form-field>
+
+            <mat-form-field class="col-5">
+                <mat-label>Nationality</mat-label>
+                <input matInput [readonly]="true" [(ngModel)]="people.nationality">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <mat-label>Email</mat-label>
+              <input matInput [readonly]="true" [(ngModel)]="people.email">
+          </mat-form-field>
+
+          <mat-form-field class="col-5">
+            <mat-label>Phone</mat-label>
+            <input matInput [readonly]="true" [(ngModel)]="people.phone">
+        </mat-form-field>
+        </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
 </div>
 

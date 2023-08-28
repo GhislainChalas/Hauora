@@ -18,7 +18,7 @@
           <mat-card-header class="justify-content-center">
             <mat-card-title>Informations personnelles</mat-card-title>
           </mat-card-header>
-          <mat-card-content>     
+          <mat-card-content >     
             <div class="row mt-4 justify-content-around">
               <mat-form-field class=" col-5">
                 <mat-label>First name</mat-label>
@@ -39,6 +39,16 @@
               <mat-label>Birth name</mat-label>
               <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthName">
             </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <mat-label>E mail</mat-label>
+              <input [readonly]="isReadOnly" matInput type="text" [(ngModel)]="user.email">
+            </mat-form-field>
+          
+            <mat-form-field class="col-5">
+              <mat-label>Phone</mat-label>
+              <input matInput [readonly]="isReadOnly" [(ngModel)]="user.phone">
+            </mat-form-field>
     
                 <mat-form-field class="col-5">
                   <mat-label>Birth date</mat-label>
@@ -57,8 +67,8 @@
                   <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthPlace">
                 </mat-form-field>
     
-              <div class="row justify-content-around">
-                <mat-form-field class="col-2">
+              <div class="row col-5 justify-content-between">
+                <mat-form-field class="col-5">
                   <mat-label>Blood type</mat-label>
                   <mat-select [disabled]="isReadOnly">
                     <mat-option *ngFor="let blood of bloods"ngDefaultControl  [(ngModel)]="user.bloodType">
@@ -67,7 +77,7 @@
                   </mat-select>
                 </mat-form-field>
     
-                <mat-form-field class="col-2">
+                <mat-form-field class="col-5">
                   <mat-label>Rhésus</mat-label>
                   <mat-select [disabled]="isReadOnly">
                     <mat-option *ngFor="let rhesus of rhesuses" ngDefaultControl [(ngModel)]="user.rhesus">
@@ -75,21 +85,22 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
-
-                <mat-form-field class="col-3">
+              </div>
+              <div class="row col-5 justify-content-between">
+                <mat-form-field class="col-5">
                   <mat-label>Taille</mat-label>
                   <input matInput [readonly]="isReadOnly" type="number" [(ngModel)]="user.size">
                 </mat-form-field>
 
                     
-                <mat-form-field class="col-3">
+                <mat-form-field class="col-5">
                   <mat-label>Poids</mat-label>
                   <input matInput [readonly]="isReadOnly" type="number" [(ngModel)]="user.weight">
                 </mat-form-field>
-                </div>
+              </div>
           </div>
            
-            <div class="row  mt-4 justify-content-around" *ngIf="!allowCreationAndModification">
+            <div class="row  mt-4 justify-content-around">
 
               <!-- dernière admission card -->
             <mat-card class="col-5 admission-card">
@@ -148,24 +159,13 @@
                       <button mat-raised-button> <mat-icon>medical_information</mat-icon>Nouvelle consultation</button>
                     </mat-card-actions>
                 </mat-card-content>
-
-
             </mat-card>
           </div>
-  
-            <div class="row justify-content-center" *ngIf="allowCreationAndModification">
-            <button class="col-4 justify-content-center" mat-raised-button color="primary" (click)="isQRCodeDisplayed = !isQRCodeDisplayed"> 
-              <span class="material-icons pr-3">
-                qr_code_2
-                </span>
-                 Sauvegarder et Génerer un QR code unique</button>
-                <app-generate-qr-code *ngIf="isQRCodeDisplayed" [user]="user"></app-generate-qr-code>
-            </div>
           </mat-card-content>
         </mat-card>
       </mat-tab>
     
-      <mat-tab>
+      <mat-tab >
         <ng-template mat-tab-label>
           <mat-icon>monitor_heart</mat-icon>
           Données médicales
@@ -175,12 +175,12 @@
             <mat-card-title>Données médicales</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <app-medical-data [isReadOnly]="isReadOnly" [doctor]="doctor"></app-medical-data>
+            <app-medical-data [isReadOnly]="isReadOnly" [doctor]="doctor" [emergencyPeople]="user.emergencyPeople"></app-medical-data>
           </mat-card-content>
         </mat-card>
       </mat-tab>
 
-      <mat-tab>
+      <mat-tab >
         <ng-template mat-tab-label>
           <mat-icon>vaccines</mat-icon>
           Vaccins
@@ -205,11 +205,20 @@
             <div *ngIf="userVaccines.length > 0">
             <div *ngFor="let vaccine of userVaccines" class="row mt-4 justify-content-around">
               
-                <mat-form-field class="col-4">
+                <mat-form-field class="col-2">
                   <mat-label>Nom du vaccin</mat-label>
                   <mat-select>
                     <mat-option *ngFor="let vaccine of vaccinesData.vaccines" [value]="vaccine.name">
                       {{vaccine.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-2">
+                  <mat-label>Type d'injection</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let type of vaccinesType" [value]="type.value">
+                      {{type.name}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -219,8 +228,8 @@
                     <input matInput type="number" [value]="vaccine.lot">
                   </mat-form-field>               
       
-                <mat-form-field class="col-4">
-                    <mat-label>Vaccination date</mat-label>
+                <mat-form-field class="col-3">
+                    <mat-label>Date vaccination</mat-label>
                     <input matInput [matDatepicker]="datepicker" [value]="vaccine.date">
                     <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker #datepicker>
@@ -237,7 +246,7 @@
         </mat-card>
       </mat-tab>
     
-      <mat-tab *ngIf="!allowCreationAndModification">
+      <mat-tab >
         <ng-template mat-tab-label>
           <mat-icon>leaderboard</mat-icon>
           Historique

@@ -9,6 +9,7 @@ import medicalReference from 'src/data/blood_analysis.json';
 export class MedicalDataComponent {
   @Input() public isReadOnly: boolean = true;
   @Input() public doctor: any = {};
+  @Input() public emergencyPeople: any[] = [];
 
   public displayedColumns: String[] = ['Test', 'Donnée'];
 

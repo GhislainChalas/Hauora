@@ -1,7 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataProvider {
+  constructor(private http: HttpClient) {}
+
   public async getSizeData(): Promise<any[]> {
     return [
       { date: '01/02/2018', count: 130 },
