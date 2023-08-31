@@ -43,6 +43,8 @@ import {
   HttpHandler,
 } from '@angular/common/http';
 import { ModalAdmissionActionComponent } from './dialog/modal-admission-action/modal-admission-action.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { ModalLostQrCodeComponent } from './dialog/modal-lost-qr-code/modal-lost-qr-code.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { ModalAdmissionActionComponent } from './dialog/modal-admission-action/m
     ReferenceComponent,
     AdmissionComponent,
     ModalAdmissionActionComponent,
+    AdministrationComponent,
+    ModalLostQrCodeComponent,
   ],
   imports: [
     BrowserModule,

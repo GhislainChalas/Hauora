@@ -85,53 +85,52 @@
     Prises de sang
 </button>
 
-<div class="row justify-content-around mt-4">
-  <mat-card class="col-5" *ngFor="let people of emergencyPeople">
+<div>
+  <mat-card>
     <mat-card-title class="text-center">
         Personnes à prévenir en cas d'urgence
     </mat-card-title>
     <mat-card-content>
-        <div class="row justify-content-around">
-        <mat-form-field class="col-5">
-            <mat-label>Nom</mat-label>
-            <input [readonly]="true" matInput type="text" [(ngModel)]="people.firstName">
-          </mat-form-field>
-        
-          <mat-form-field class="col-5">
-            <mat-label>Prénom</mat-label>
-            <input matInput [readonly]="true" [(ngModel)]="people.LastName">
-          </mat-form-field>
-         
-          <mat-form-field class="col-5">
-            <mat-label>Adresse</mat-label>
-            <input  matInput [readonly]="true" type="text" [(ngModel)]="people.address">
-        </mat-form-field>
-        
-        <mat-form-field class="col-5">
-            <mat-label>Code postal</mat-label>
-            <input matInput [readonly]="true" [(ngModel)]="people.zipCode">
-        </mat-form-field>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Weight Column -->
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+        </ng-container>
 
-        <mat-form-field class="col-5">
-            <mat-label>Ville</mat-label>
-            <input matInput [readonly]="true" [(ngModel)]="people.city">
-        </mat-form-field>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+        </ng-container>
 
-            <mat-form-field class="col-5">
-                <mat-label>Nationality</mat-label>
-                <input matInput [readonly]="true" [(ngModel)]="people.nationality">
-            </mat-form-field>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="address">
+                  <th mat-header-cell *matHeaderCellDef> Adresse </th>
+                  <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+              </ng-container>
 
-            <mat-form-field class="col-5">
-              <mat-label>Email</mat-label>
-              <input matInput [readonly]="true" [(ngModel)]="people.email">
-          </mat-form-field>
+                      <!-- Symbol Column -->
+              <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef> Ville </th>
+                <td mat-cell *matCellDef="let row"> {{row.zipCode}} {{row.city}} </td>
+            </ng-container>
 
-          <mat-form-field class="col-5">
-            <mat-label>Phone</mat-label>
-            <input matInput [readonly]="true" [(ngModel)]="people.phone">
-        </mat-form-field>
-        </div>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+
+                    <!-- Symbol Column -->
+            <ng-container matColumnDef="phone">
+              <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+              <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+          </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedEmergencyColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedEmergencyColumns;"></tr>
+        </table>
     </mat-card-content>
   </mat-card>
 </div>

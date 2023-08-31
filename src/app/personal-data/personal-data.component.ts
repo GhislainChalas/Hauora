@@ -104,16 +104,7 @@ export class PersonalDataComponent {
       birthPlace: '',
       weight: 65,
       size: 160,
-      emergencyPeople: [
-        {
-          firstName: '',
-          lastName: '',
-          address: '',
-          zipCode: '',
-          city: '',
-          nationality: '',
-        },
-      ],
+      emergencyPeople: [],
       socialSecurityNumber: '',
     };
     this.sizeChart = {};
@@ -121,6 +112,21 @@ export class PersonalDataComponent {
     this.lastAdmission.status === 'active'
       ? (this.isAdmissionActive = true)
       : null;
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.user.emergencyPeople.push({
+      firstName: 'Test',
+      lastName: 'Test',
+      address: 'Adresse test',
+      zipCode: '26000',
+      city: 'Valence',
+      nationality: 'Française',
+      email: 'test@test.com',
+      phone: '0475000000',
+    });
   }
 
   public addNewVaccine(): void {

@@ -6,10 +6,12 @@ import { CreationComponent } from './creation/creation.component';
 import { HomeComponent } from './home/home.component';
 import { ResumeComponent } from './resume/resume.component';
 import { ReferenceComponent } from './reference/reference.component';
+import { AdministrationComponent } from './administration/administration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   { path: 'signin', component: ConnexionComponent },
+  { path: 'administration', component: AdministrationComponent },
   { path: 'reference', component: ReferenceComponent },
   { path: 'home', component: HomeComponent },
   { path: 'scan', component: ScanQrCodeComponent },

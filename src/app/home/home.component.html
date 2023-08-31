@@ -1,14 +1,28 @@
 <div class="container-fluid mt-4">
     <div class="row justify-content-around">
-        <mat-card class="col-4">
+      <mat-card class="col-3">
+        <mat-card-header class="card-title-center mb-1">
+          <mat-card-title> QR Code perdu ?</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image height="450" src="../../assets/question-mark.png" alt="Question mark">
+        <mat-card-content class="mt-2">
+          <p class="text-justify">
+            Votre patient a perdu son QR Code? Vérifiez bien son identité, puis saisissez son adresse mail pour que le QR Code soit envoyé.
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="justify-content-center">
+          <button mat-raised-button color="accent" (click)="openRetrieveModal()">Récupérez</button>
+        </mat-card-actions>
+      </mat-card>
+
+        <mat-card class="col-3">
             <mat-card-header class="card-title-center mb-1">
               <mat-card-title> Scannez un QR Code</mat-card-title>
             </mat-card-header>
             <img mat-card-image src="../../assets/scan-qr-code.png" alt="Scan QR Code">
             <mat-card-content class="mt-2">
               <p class="text-justify">
-                Scannez le QR Code sécurisé d'une carte détenue par un patient afin d'obtenir l'accès à l'ensemble de ses données médicales,
-                ainsi que son dossier médical complet.
+                Scannez le QR Code sécurisé d'une carte détenue par un patient afin d'obtenir l'accès à l'ensemble de son dossier médical.
               </p>
             </mat-card-content>
             <mat-card-actions class="justify-content-center">
@@ -16,7 +30,7 @@
             </mat-card-actions>
           </mat-card>
 
-          <mat-card class="col-4">
+          <mat-card class="col-3">
             <mat-card-header class="card-title-center mb-1">
               <mat-card-title> Creez un nouveau carnet de santé </mat-card-title>
             </mat-card-header>
