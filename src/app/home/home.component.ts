@@ -27,10 +27,10 @@ export class HomeComponent {
     this.dialog
       .open(ModalLostQrCodeComponent, { disableClose: true })
       .afterClosed()
-      .subscribe((user) => {
-        if (user) {
+      .subscribe((data) => {
+        if (data && data !== 'creation') {
           this.goToResume();
-        } else {
+        } else if (data === 'creation') {
           this.goToCreation();
         }
       });

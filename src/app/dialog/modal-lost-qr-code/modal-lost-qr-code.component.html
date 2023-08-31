@@ -1,12 +1,12 @@
 <div *ngIf="!isQRCodeRetrieved">
     <h3 mat-dialog-title class="text-center">Retrouvez un QR Code</h3>
-    <div mat-dialog-content class="row justify-content-around">
-        <mat-form-field class="col-12">
+    <div class="row justify-content-center">
+        <mat-form-field class="col-11">
             <mat-label>Email</mat-label>
             <input [readonly]="false" matInput type="text" [(ngModel)]="lostData.email">
         </mat-form-field>
-
-    <div class="row">
+    </div>
+    <div class="row justify-content-around">
         <mat-form-field class="col-5">
             <mat-label>Prénom</mat-label>
             <input matInput [readonly]="false" type="text" [(ngModel)]="lostData.firstName">
@@ -18,8 +18,7 @@
         </mat-form-field>
         </div>
 
-    </div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="justify-content-around">
     <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
     <button mat-raised-button color="primary" (click)="isQRCodeRetrieved = !isQRCodeRetrieved">Enregistrer</button>
     </div>
@@ -30,6 +29,6 @@
     <mat-dialog-content *ngIf="!user"> Aucun utilisateur n'a été trouvé. Veuillez créer un nouvel utilisateur</mat-dialog-content>
     <div mat-dialog-actions class="justify-content-center">
     <button *ngIf="user" mat-raised-button color="primary" [mat-dialog-close]="user">Ouvrir le dossier</button>
-    <button *ngIf="!user" mat-raised-button color="primary" mat-dialog-close>Fermer</button>
+    <button *ngIf="!user" mat-raised-button color="primary" [mat-dialog-close]="'creation'">Fermer</button>
     </div>
 </div>
