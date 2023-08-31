@@ -18,6 +18,13 @@ export class PersonalDataComponent {
   public weightChart: any;
   public isHistoryTabActive: Boolean = false;
   public vaccinesData = vaccinesData;
+  public displayedAdmissionsColumns: String[] = [
+    'date',
+    'reason',
+    'hospital',
+    'status',
+  ];
+  public displayedConsultationColumns: String[] = ['date', 'reason', 'doctor'];
 
   public bloods = [
     { value: 1, name: 'O' },
@@ -45,44 +52,93 @@ export class PersonalDataComponent {
     adress: "Pole medical - 26450 Cléon d'Andran",
   };
 
-  public lastAdmission: any = {
-    date: '25/08/2023',
-    reason: 'Bras cassé',
-    hopital: 'Clinique Kennedy - 26200 Montélimar',
-    treatment: [
-      {
-        name: 'Doliprane 1000mg',
-        delay: '1 cp matin midi et soir',
-        duree: '10 jours',
-      },
-      {
-        name: 'Tramadol 18mg',
-        delay: '2 cp matin midi et soir si douleurs',
-        duree: '3 jours',
-      },
-    ],
-    observations: '',
-    history: [
-      { date: '25/08/2023', hour: '15:00', action: 'Prise de doliprane 1 cp' },
-      {
-        date: '25/08/2023',
-        hour: '18:00',
-        action: 'Pose de résine sur bras droit',
-      },
-      {
-        date: '25/08/2023',
-        hour: '21:35',
-        action: 'Prise de doliprane 1 cp suite douleur',
-      },
-    ],
-    status: 'active',
-  };
+  public lastAdmissions: any[] = [
+    {
+      date: '25/08/2023',
+      reason: 'Bras cassé',
+      hospital: 'Clinique Kennedy - 26200 Montélimar',
+      treatment: [
+        {
+          name: 'Doliprane 1000mg',
+          delay: '1 cp matin midi et soir',
+          duree: '10 jours',
+        },
+        {
+          name: 'Tramadol 18mg',
+          delay: '2 cp matin midi et soir si douleurs',
+          duree: '3 jours',
+        },
+      ],
+      observations: '',
+      history: [
+        {
+          date: '25/08/2023',
+          hour: '15:00',
+          action: 'Prise de doliprane 1 cp',
+        },
+        {
+          date: '25/08/2023',
+          hour: '18:00',
+          action: 'Pose de résine sur bras droit',
+        },
+        {
+          date: '25/08/2023',
+          hour: '21:35',
+          action: 'Prise de doliprane 1 cp suite douleur',
+        },
+      ],
+      status: 'active',
+    },
+    {
+      date: '24/08/2023',
+      reason: 'Entorse pied gauche',
+      hospital: 'Clinique La parisière - 26300 Bourg de péage',
+      treatment: [
+        {
+          name: 'Doliprane 1000mg',
+          delay: '1 cp matin midi et soir',
+          duree: '10 jours',
+        },
+        {
+          name: 'Tramadol 18mg',
+          delay: '2 cp matin midi et soir si douleurs',
+          duree: '3 jours',
+        },
+      ],
+      observations: '',
+      history: [
+        {
+          date: '24/08/2023',
+          hour: '18:22',
+          action: 'Prise de doliprane 1 cp',
+        },
+        {
+          date: '24/08/2023',
+          hour: '19:00',
+          action: 'Pose de résine sur bras droit',
+        },
+        {
+          date: '24/08/2023',
+          hour: '22:47',
+          action: 'Prise de doliprane 1 cp suite douleur',
+        },
+      ],
+      status: 'closed',
+    },
+  ];
 
-  public lastConsultation: any = {
-    date: '25/08/2023',
-    reason: 'Rappel vaccin',
-    doctor: "Julien LHERMITTE -Pole médical 26450 Cléon d'Andran",
-  };
+  public lastConsultations: any[] = [
+    {
+      date: '25/08/2023',
+      reason: 'Rappel vaccin',
+      doctor: "Julien LHERMITTE -Pole médical 26450 Cléon d'Andran",
+    },
+    {
+      date: '23/07/2023',
+      reason: 'Grippe intestinale',
+      doctor: "Julien LHERMITTE -Pole médical 26450 Cléon d'Andran",
+    },
+  ];
 
   constructor() {
     this.user = {
@@ -109,7 +165,7 @@ export class PersonalDataComponent {
     };
     this.sizeChart = {};
     this.weightChart = {};
-    this.lastAdmission.status === 'active'
+    this.lastAdmissions[0].status === 'active'
       ? (this.isAdmissionActive = true)
       : null;
   }
