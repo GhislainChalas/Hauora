@@ -65,5 +65,6 @@ export class CreationComponent {
 
   public async ngOnInit(): Promise<void> {
     this.countries = await this.dataService.getCountries();
+    await this.dataService.getUsers();
   }
 }

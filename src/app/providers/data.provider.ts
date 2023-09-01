@@ -1,10 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataProvider {
+  private uri = 'http://localhost:3000';
+
   constructor(private http: HttpClient) {}
+
+  public getUsers(): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${this.uri}/users`, {
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      })
+    );
+  }
 
   public async getSizeData(): Promise<any[]> {
     return [

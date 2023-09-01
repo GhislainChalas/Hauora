@@ -2,10 +2,16 @@ import { DataProvider } from '../providers/data.provider';
 import { Data } from '../types/data';
 import { Injectable } from '@angular/core';
 import countriesData from '../../data/curiexplore-pays.json';
+import { User } from '../types/user';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
   constructor(private dataProvider: DataProvider) {}
+
+  public async getUsers(): Promise<User[]> {
+    const result = await this.dataProvider.getUsers();
+    return result;
+  }
 
   public async getSizeData(): Promise<Data[]> {
     const data = await this.dataProvider.getSizeData();
