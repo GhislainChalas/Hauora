@@ -9,7 +9,6 @@ import { User } from '../types/user';
 })
 export class ResumeComponent {
   public user: User = {
-    id: '',
     firstName: '',
     lastName: '',
     usualName: '',

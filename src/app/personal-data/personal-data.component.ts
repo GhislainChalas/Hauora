@@ -142,7 +142,6 @@ export class PersonalDataComponent {
 
   constructor() {
     this.user = {
-      id: uuidv4(),
       firstName: '',
       lastName: '',
       usualName: '',

@@ -8,11 +8,6 @@ import { User } from '../types/user';
 export class DataService {
   constructor(private dataProvider: DataProvider) {}
 
-  public async getUsers(): Promise<User[]> {
-    const result = await this.dataProvider.getUsers();
-    return result;
-  }
-
   public async getSizeData(): Promise<Data[]> {
     const data = await this.dataProvider.getSizeData();
     return data.sort();

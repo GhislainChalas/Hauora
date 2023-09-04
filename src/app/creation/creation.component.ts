@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../types/user';
 import { v4 as uuidv4 } from 'uuid';
 import { DataService } from '../services/data.service';
+import { UserService } from '../services/user.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-creation',
@@ -27,9 +29,12 @@ export class CreationComponent {
     { value: 2, name: '+' },
   ];
 
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private patientService: PatientService,
+    private userService: UserService
+  ) {
     this.user = {
-      id: uuidv4(),
       firstName: '',
       lastName: '',
       usualName: '',
@@ -65,6 +70,13 @@ export class CreationComponent {
 
   public async ngOnInit(): Promise<void> {
     this.countries = await this.dataService.getCountries();
-    await this.dataService.getUsers();
+    await this.userService.getUsers();
+  }
+
+  public async createPatient(): Promise<any> {
+    this.patientService.createPatient(this.user).then((res) => {
+      console.log(res);
+      this.isQRCodeDisplayed = !this.isQRCodeDisplayed;
+    });
   }
 }

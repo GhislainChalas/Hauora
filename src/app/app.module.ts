@@ -46,6 +46,7 @@ import { ModalAdmissionActionComponent } from './dialog/modal-admission-action/m
 import { AdministrationComponent } from './administration/administration.component';
 import { ModalLostQrCodeComponent } from './dialog/modal-lost-qr-code/modal-lost-qr-code.component';
 import { ModalPdfViewerComponent } from './dialog/modal-pdf-viewer/modal-pdf-viewer.component';
+import { ModalCreationConfirmationComponent } from './dialog/modal-creation-confirmation/modal-creation-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ModalPdfViewerComponent } from './dialog/modal-pdf-viewer/modal-pdf-vie
     AdministrationComponent,
     ModalLostQrCodeComponent,
     ModalPdfViewerComponent,
+    ModalCreationConfirmationComponent,
   ],
   imports: [
     BrowserModule,

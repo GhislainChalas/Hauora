@@ -21,18 +21,17 @@
               <mat-card-title class="card-title">Inscrivez-vous</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-            <form>
               <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="form-outline mb-4">
                   <mat-form-field class="w-100">
                     <mat-label>First name</mat-label>
-                    <input matInput>
+                    <input matInput [(ngModel)]="user.firstName">
                   </mat-form-field>
                 
                 <div class="form-outline mb-4">
                   <mat-form-field class="w-100">
                     <mat-label>Last name</mat-label>
-                    <input matInput>
+                    <input matInput [(ngModel)]="user.lastName">
                   </mat-form-field>
                 </div>
               </div>
@@ -41,14 +40,14 @@
               <div class="form-outline mb-4">
                 <mat-form-field class="w-100">
                   <mat-label>Email</mat-label>
-                  <input matInput type="email">
+                  <input matInput type="email" [(ngModel)]="user.email">
                 </mat-form-field>
               </div>
 
               <div class="form-outline mb-4 signup-input">
                 <mat-form-field class="w-100">
                   <mat-label>Choisissez votre profession</mat-label>
-                  <select matNativeControl required>
+                  <select matNativeControl required [(ngModel)]="user.profession">
                     <option value="1">Médecin</option>
                     <option value="2">Hôpital</option>
                     <option value="3">ONG</option>
@@ -61,13 +60,13 @@
               <div class="form-outline mb-4 signup-input">
                 <mat-form-field class="w-100">
                   <mat-label>Password</mat-label>
-                  <input matInput type="password">
+                  <input matInput type="password" [(ngModel)]="user.password">
                 </mat-form-field>
               </div>
 
               <!-- Submit button -->
               <div class="d-flex justify-content-center align-items-center mb-4">
-                <button mat-fab extended color="accent">
+                <button mat-fab extended color="accent" (click)="postUser()">
                   S'inscrire
                 </button>
               </div>
@@ -78,7 +77,6 @@
                 <button mat-fab extended color="primary" (click)="displaySignUp()">
                 <i class="fa-regular fa-user-plus"></i>Se connecter</button>
               </div>
-            </form>
             </mat-card-content>
           </mat-card>
         </div>
