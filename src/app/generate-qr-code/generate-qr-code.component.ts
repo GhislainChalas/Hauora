@@ -12,10 +12,6 @@ export class GenerateQrCodeComponent {
 
   public qrCodeDownloadLink: SafeUrl = '';
 
-  public stringifyUser(): string {
-    return JSON.stringify(this.user);
-  }
-
   public onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
   }

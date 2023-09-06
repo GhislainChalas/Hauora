@@ -13,7 +13,7 @@ export class ScanQrCodeComponent {
   public onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
     this.router.navigate(['resume'], {
-      state: { user: JSON.parse(resultString) },
+      state: { user: resultString },
     });
   }
 }

@@ -13,6 +13,7 @@ import { PatientService } from '../services/patient.service';
 export class CreationComponent {
   public user: User;
 
+  public userId: string = '';
   public countries: any = [];
 
   public isQRCodeDisplayed: Boolean = false;
@@ -75,7 +76,9 @@ export class CreationComponent {
 
   public async createPatient(): Promise<any> {
     this.patientService.createPatient(this.user).then((res) => {
-      console.log(res);
+      console.log(res.insertedId);
+      this.userId = res.insertedId.toString();
+
       this.isQRCodeDisplayed = !this.isQRCodeDisplayed;
     });
   }

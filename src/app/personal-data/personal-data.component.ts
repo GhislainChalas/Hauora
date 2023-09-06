@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { AdmissionService } from './../services/admission.service';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { User } from '../types/user';
 import { v4 as uuidv4 } from 'uuid';
 import vaccinesData from '../../data/vaccines.json';
@@ -52,80 +53,7 @@ export class PersonalDataComponent {
     adress: "Pole medical - 26450 Cléon d'Andran",
   };
 
-  public lastAdmissions: any[] = [
-    {
-      date: '25/08/2023',
-      reason: 'Bras cassé',
-      hospital: 'Clinique Kennedy - 26200 Montélimar',
-      treatment: [
-        {
-          name: 'Doliprane 1000mg',
-          delay: '1 cp matin midi et soir',
-          duree: '10 jours',
-        },
-        {
-          name: 'Tramadol 18mg',
-          delay: '2 cp matin midi et soir si douleurs',
-          duree: '3 jours',
-        },
-      ],
-      observations: '',
-      history: [
-        {
-          date: '25/08/2023',
-          hour: '15:00',
-          action: 'Prise de doliprane 1 cp',
-        },
-        {
-          date: '25/08/2023',
-          hour: '18:00',
-          action: 'Pose de résine sur bras droit',
-        },
-        {
-          date: '25/08/2023',
-          hour: '21:35',
-          action: 'Prise de doliprane 1 cp suite douleur',
-        },
-      ],
-      status: 'active',
-    },
-    {
-      date: '24/08/2023',
-      reason: 'Entorse pied gauche',
-      hospital: 'Clinique La parisière - 26300 Bourg de péage',
-      treatment: [
-        {
-          name: 'Doliprane 1000mg',
-          delay: '1 cp matin midi et soir',
-          duree: '10 jours',
-        },
-        {
-          name: 'Tramadol 18mg',
-          delay: '2 cp matin midi et soir si douleurs',
-          duree: '3 jours',
-        },
-      ],
-      observations: '',
-      history: [
-        {
-          date: '24/08/2023',
-          hour: '18:22',
-          action: 'Prise de doliprane 1 cp',
-        },
-        {
-          date: '24/08/2023',
-          hour: '19:00',
-          action: 'Pose de résine sur bras droit',
-        },
-        {
-          date: '24/08/2023',
-          hour: '22:47',
-          action: 'Prise de doliprane 1 cp suite douleur',
-        },
-      ],
-      status: 'closed',
-    },
-  ];
+  public lastAdmissions: any[] = [];
 
   public lastConsultations: any[] = [
     {
@@ -140,7 +68,7 @@ export class PersonalDataComponent {
     },
   ];
 
-  constructor() {
+  constructor(private admissionService: AdmissionService) {
     this.user = {
       firstName: '',
       lastName: '',
@@ -164,24 +92,17 @@ export class PersonalDataComponent {
     };
     this.sizeChart = {};
     this.weightChart = {};
-    this.lastAdmissions[0].status === 'active'
+    this.lastAdmissions[0] && this.lastAdmissions[0].status === 'active'
       ? (this.isAdmissionActive = true)
       : null;
   }
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.user.emergencyPeople.push({
-      firstName: 'Test',
-      lastName: 'Test',
-      address: 'Adresse test',
-      zipCode: '26000',
-      city: 'Valence',
-      nationality: 'Française',
-      email: 'test@test.com',
-      phone: '0475000000',
-    });
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (this.user && this.user._id) {
+      this.admissionService.getLastAdmissions(this.user._id).then((res) => {
+        this.lastAdmissions = res;
+      });
+    }
   }
 
   public addNewVaccine(): void {

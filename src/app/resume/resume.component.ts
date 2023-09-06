@@ -1,3 +1,4 @@
+import { PatientService } from './../services/patient.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../types/user';
@@ -26,18 +27,7 @@ export class ResumeComponent {
     birthPlace: '',
     weight: 65,
     size: 160,
-    emergencyPeople: [
-      {
-        firstName: 'Test',
-        lastName: 'Test',
-        address: 'Adresse test',
-        zipCode: '26000',
-        city: 'Valence',
-        nationality: 'Française',
-        email: 'test@test.com',
-        phone: '0475000000',
-      },
-    ],
+    emergencyPeople: [],
     socialSecurityNumber: '',
   };
 
@@ -45,10 +35,12 @@ export class ResumeComponent {
 
   private state: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private patientService: PatientService) {
     this.state = this.router.getCurrentNavigation()?.extras?.state;
+  }
+  public async ngOnInit(): Promise<void> {
     if (this.state && this.state['user']) {
-      this.user = this.state['user'];
+      this.user = await this.patientService.getPatient(this.state['user']);
     }
   }
 }

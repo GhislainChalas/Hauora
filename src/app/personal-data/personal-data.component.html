@@ -50,42 +50,26 @@
               <input matInput [readonly]="isReadOnly" [(ngModel)]="user.phone">
             </mat-form-field>
     
-                <mat-form-field class="col-5">
-                  <mat-label>Birth date</mat-label>
-                  <input matInput [(ngModel)]="user.birthDate" [readonly]="isReadOnly" [matDatepicker]="datepicker">
-                  <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-                  <mat-datepicker #datepicker>
-                    <mat-datepicker-actions>
-                      <button mat-button matDatepickerCancel>Cancel</button>
-                      <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                    </mat-datepicker-actions>
-                  </mat-datepicker>
-                </mat-form-field>
+            <mat-form-field class="col-5">
+              <mat-label>Birth date</mat-label>
+              <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthDate">
+            </mat-form-field>
+
+            <mat-form-field class="col-5">
+              <mat-label>Birth place</mat-label>
+              <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthPlace">
+            </mat-form-field>
     
-                <mat-form-field class="col-5">
-                  <mat-label>Birth place</mat-label>
-                  <input matInput [readonly]="isReadOnly" [(ngModel)]="user.birthPlace">
-                </mat-form-field>
+            <mat-form-field class="col-5">
+              <mat-label>Blood type</mat-label>
+              <input matInput [readonly]="isReadOnly" [(ngModel)]="user.bloodType">
+            </mat-form-field>
     
-              <div class="row col-5 justify-content-between">
-                <mat-form-field class="col-5">
-                  <mat-label>Blood type</mat-label>
-                  <mat-select [disabled]="isReadOnly">
-                    <mat-option *ngFor="let blood of bloods"ngDefaultControl  [(ngModel)]="user.bloodType">
-                      {{blood.name}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-    
-                <mat-form-field class="col-5">
-                  <mat-label>Rhésus</mat-label>
-                  <mat-select [disabled]="isReadOnly">
-                    <mat-option *ngFor="let rhesus of rhesuses" ngDefaultControl [(ngModel)]="user.rhesus">
-                      {{rhesus.name}} 
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+            <mat-form-field class="col-5">
+              <mat-label>Rhésus</mat-label>
+              <input matInput [readonly]="isReadOnly" [(ngModel)]="user.rhesus">
+            </mat-form-field>
+
               <div class="row col-5 justify-content-between">
                 <mat-form-field class="col-5">
                   <mat-label>Taille</mat-label>
@@ -135,11 +119,15 @@
 
                       <tr mat-header-row *matHeaderRowDef="displayedAdmissionsColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns: displayedAdmissionsColumns;"></tr>
+
+                      <tr class="mat-row justify-content-center" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">Aucune admission n'est disponible</td>
+                      </tr>
                   </table>
     
                   <mat-card-actions class="justify-content-between mt-4">
                     <button mat-raised-button> <mat-icon>leaderboard</mat-icon>Historique</button>
-                    <button mat-raised-button> <mat-icon>medical_information</mat-icon>Nouvelle admission</button>
+                    <button mat-raised-button *ngIf="lastAdmissions[0] && lastAdmissions[0].status !== 'active'"> <mat-icon>medical_information</mat-icon>Nouvelle admission</button>
                   </mat-card-actions>
               </mat-card-content>
   
