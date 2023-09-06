@@ -1,6 +1,6 @@
 <div class="container mt-4">
 
-    <mat-tab-group (selectedTabChange)="changeTab($event)">
+    <mat-tab-group #tabGroup (selectedTabChange)="changeTab($event)">
       <mat-tab class="mb-3" *ngIf="isAdmissionActive">
         <ng-template mat-tab-label>
           <mat-icon>local_hospital</mat-icon>

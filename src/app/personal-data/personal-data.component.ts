@@ -1,8 +1,8 @@
 import { AdmissionService } from './../services/admission.service';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { User } from '../types/user';
-import { v4 as uuidv4 } from 'uuid';
 import vaccinesData from '../../data/vaccines.json';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-personal-data',
@@ -92,15 +92,18 @@ export class PersonalDataComponent {
     };
     this.sizeChart = {};
     this.weightChart = {};
-    this.lastAdmissions[0] && this.lastAdmissions[0].status === 'active'
-      ? (this.isAdmissionActive = true)
-      : null;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.user && this.user._id) {
       this.admissionService.getLastAdmissions(this.user._id).then((res) => {
         this.lastAdmissions = res;
+        if (
+          this.lastAdmissions[0] &&
+          this.lastAdmissions[0].status === 'active'
+        ) {
+          this.isAdmissionActive = true;
+        }
       });
     }
   }
