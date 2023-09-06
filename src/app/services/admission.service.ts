@@ -12,4 +12,8 @@ export class AdmissionService {
     const result = await this.admissionProvider.postAdmission(body);
     return result;
   }
+
+  public async closeAdmission(id: String): Promise<any> {
+    return await this.admissionProvider.closeAdmission(id);
+  }
 }

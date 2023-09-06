@@ -24,4 +24,12 @@ export class BaseProvider {
       })
     );
   }
+
+  public async putData(): Promise<any> {
+    return lastValueFrom(
+      this.http.put(`${this.uri}/${this.path}`, null, {
+        headers: this.headers,
+      })
+    );
+  }
 }

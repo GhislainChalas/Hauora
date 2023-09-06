@@ -17,4 +17,9 @@ export class AdmissionProvider extends BaseProvider {
   public async postAdmission(body: any): Promise<any> {
     return await super.postData(body);
   }
+
+  public async closeAdmission(id: String): Promise<any> {
+    this.path = `admissions/${id}/close`;
+    return await super.putData();
+  }
 }

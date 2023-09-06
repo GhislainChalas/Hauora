@@ -1,0 +1,8 @@
+<h3 mat-dialog-title class="text-center">Nouvelle action</h3>
+<div mat-dialog-content class="row justify-content-center">
+      <p>Êtes-vous sûr de vouloir clôturer cette admission?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" (click)="closeAdmission()" [mat-dialog-close]="true">Enregistrer</button>
+</div>

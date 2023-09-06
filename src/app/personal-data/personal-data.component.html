@@ -6,7 +6,7 @@
           <mat-icon>local_hospital</mat-icon>
             Admission en cours
         </ng-template>
-        <app-admission [admission]="lastAdmissions[0]" [doctor]="doctor"></app-admission>
+        <app-admission [admission]="lastAdmissions[0]" [doctor]="doctor" (closeAdmissionEventEmitter)="refreshAdmissions($event)"></app-admission>
       </mat-tab>
 
       <mat-tab class="mb-3">

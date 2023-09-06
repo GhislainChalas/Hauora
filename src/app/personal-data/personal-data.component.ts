@@ -2,7 +2,6 @@ import { AdmissionService } from './../services/admission.service';
 import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { User } from '../types/user';
 import vaccinesData from '../../data/vaccines.json';
-import { MatTabGroup } from '@angular/material/tabs';
 import { ConsultationService } from '../services/consultation.service';
 
 @Component({
@@ -113,5 +112,17 @@ export class PersonalDataComponent {
       (event.index === 3 && !this.isAdmissionActive)
     )
       this.isHistoryTabActive = true;
+  }
+  public async refreshAdmissions(event: Boolean): Promise<any> {
+    if (event && this.user && this.user._id) {
+      this.lastAdmissions = await this.admissionService.getLastAdmissions(
+        this.user._id
+      );
+    }
+    if (this.lastAdmissions[0] && this.lastAdmissions[0].status === 'active') {
+      this.isAdmissionActive = true;
+    } else {
+      this.isAdmissionActive = false;
+    }
   }
 }
