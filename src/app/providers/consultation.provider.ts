@@ -1,4 +1,3 @@
-import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseProvider } from './base.provider';
@@ -7,6 +6,11 @@ import { BaseProvider } from './base.provider';
 export class ConsultationProvider extends BaseProvider {
   constructor(public override http: HttpClient) {
     super(http, 'consultations');
+  }
+
+  public async getConsultationsByPatientId(id: String): Promise<any[]> {
+    this.path = `consultations/${id}`;
+    return super.getData();
   }
 
   public async getLastConsultations(patientId: String): Promise<any> {

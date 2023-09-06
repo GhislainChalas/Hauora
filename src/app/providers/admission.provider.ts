@@ -9,6 +9,11 @@ export class AdmissionProvider extends BaseProvider {
     super(http, 'admissions');
   }
 
+  public async getAdmissionsByPatientId(id: String): Promise<any[]> {
+    this.path = `admissions/${id}`;
+    return super.getData();
+  }
+
   public async getLastAdmissions(patientId: String): Promise<any> {
     this.path = `admissions/${patientId}/last`;
     return super.getData();

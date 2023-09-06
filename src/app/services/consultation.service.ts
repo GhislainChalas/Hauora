@@ -4,6 +4,10 @@ import { ConsultationProvider } from '../providers/consultation.provider';
 export class ConsultationService {
   constructor(private consultationProvider: ConsultationProvider) {}
 
+  public async getConsultationsByPatientId(id: String): Promise<any[]> {
+    return await this.consultationProvider.getConsultationsByPatientId(id);
+  }
+
   public async getLastConsultations(id: String): Promise<any[]> {
     return await this.consultationProvider.getLastConsultations(id);
   }

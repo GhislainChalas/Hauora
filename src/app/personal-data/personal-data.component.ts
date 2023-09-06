@@ -3,6 +3,8 @@ import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { User } from '../types/user';
 import vaccinesData from '../../data/vaccines.json';
 import { ConsultationService } from '../services/consultation.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalHistoryComponent } from '../dialog/modal-history/modal-history.component';
 
 @Component({
   selector: 'app-personal-data',
@@ -59,7 +61,8 @@ export class PersonalDataComponent {
 
   constructor(
     private admissionService: AdmissionService,
-    private consultationService: ConsultationService
+    private consultationService: ConsultationService,
+    private dialog: MatDialog
   ) {
     this.user = {
       firstName: '',
@@ -86,7 +89,7 @@ export class PersonalDataComponent {
     this.weightChart = {};
   }
 
-  public async ngOnChanges(changes: SimpleChanges): Promise<void> {
+  public async ngOnChanges(): Promise<void> {
     if (this.user && this.user._id) {
       this.lastAdmissions = await this.admissionService.getLastAdmissions(
         this.user._id
@@ -100,6 +103,13 @@ export class PersonalDataComponent {
       this.lastConsultations =
         await this.consultationService.getLastConsultations(this.user._id);
     }
+  }
+
+  public openModal(type: String): void {
+    this.dialog.open(ModalHistoryComponent, {
+      disableClose: true,
+      data: { type, user: this.user._id },
+    });
   }
 
   public addNewVaccine(): void {

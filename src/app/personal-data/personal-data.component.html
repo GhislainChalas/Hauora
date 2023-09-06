@@ -126,7 +126,7 @@
                   </table>
     
                   <mat-card-actions class="justify-content-between mt-4">
-                    <button mat-raised-button> <mat-icon>leaderboard</mat-icon>Historique</button>
+                    <button mat-raised-button (click)="openModal('admission')"> <mat-icon>leaderboard</mat-icon>Historique</button>
                     <button mat-raised-button *ngIf="lastAdmissions[0] && lastAdmissions[0].status !== 'active'"> <mat-icon>medical_information</mat-icon>Nouvelle admission</button>
                   </mat-card-actions>
               </mat-card-content>
@@ -163,7 +163,7 @@
                     </table>
 
                     <mat-card-actions class="justify-content-between mt-4">
-                      <button mat-raised-button> <mat-icon>leaderboard</mat-icon>Historique</button>
+                      <button mat-raised-button (click)="openModal('consultation')"> <mat-icon>leaderboard</mat-icon>Historique</button>
                       <button mat-raised-button> <mat-icon>medical_information</mat-icon>Nouvelle consultation</button>
                     </mat-card-actions>
                 </mat-card-content>

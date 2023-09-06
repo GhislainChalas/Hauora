@@ -4,6 +4,10 @@ import { AdmissionProvider } from '../providers/admission.provider';
 export class AdmissionService {
   constructor(private admissionProvider: AdmissionProvider) {}
 
+  public async getAdmissionsByPatientId(id: String): Promise<any[]> {
+    return await this.admissionProvider.getAdmissionsByPatientId(id);
+  }
+
   public async getLastAdmissions(id: String): Promise<any[]> {
     return await this.admissionProvider.getLastAdmissions(id);
   }
