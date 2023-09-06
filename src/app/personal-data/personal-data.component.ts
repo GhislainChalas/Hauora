@@ -3,6 +3,7 @@ import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { User } from '../types/user';
 import vaccinesData from '../../data/vaccines.json';
 import { MatTabGroup } from '@angular/material/tabs';
+import { ConsultationService } from '../services/consultation.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -55,20 +56,12 @@ export class PersonalDataComponent {
 
   public lastAdmissions: any[] = [];
 
-  public lastConsultations: any[] = [
-    {
-      date: '25/08/2023',
-      reason: 'Rappel vaccin',
-      doctor: "Julien LHERMITTE -Pole médical 26450 Cléon d'Andran",
-    },
-    {
-      date: '23/07/2023',
-      reason: 'Grippe intestinale',
-      doctor: "Julien LHERMITTE -Pole médical 26450 Cléon d'Andran",
-    },
-  ];
+  public lastConsultations: any[] = [];
 
-  constructor(private admissionService: AdmissionService) {
+  constructor(
+    private admissionService: AdmissionService,
+    private consultationService: ConsultationService
+  ) {
     this.user = {
       firstName: '',
       lastName: '',
@@ -94,17 +87,19 @@ export class PersonalDataComponent {
     this.weightChart = {};
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
+  public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     if (this.user && this.user._id) {
-      this.admissionService.getLastAdmissions(this.user._id).then((res) => {
-        this.lastAdmissions = res;
-        if (
-          this.lastAdmissions[0] &&
-          this.lastAdmissions[0].status === 'active'
-        ) {
-          this.isAdmissionActive = true;
-        }
-      });
+      this.lastAdmissions = await this.admissionService.getLastAdmissions(
+        this.user._id
+      );
+      if (
+        this.lastAdmissions[0] &&
+        this.lastAdmissions[0].status === 'active'
+      ) {
+        this.isAdmissionActive = true;
+      }
+      this.lastConsultations =
+        await this.consultationService.getLastConsultations(this.user._id);
     }
   }
 

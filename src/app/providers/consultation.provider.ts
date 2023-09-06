@@ -4,17 +4,17 @@ import { Injectable } from '@angular/core';
 import { BaseProvider } from './base.provider';
 
 @Injectable({ providedIn: 'root' })
-export class AdmissionProvider extends BaseProvider {
+export class ConsultationProvider extends BaseProvider {
   constructor(public override http: HttpClient) {
-    super(http, 'admissions');
+    super(http, 'consultations');
   }
 
-  public async getLastAdmissions(patientId: String): Promise<any> {
-    this.path = `admissions/${patientId}/last`;
-    return super.getData();
+  public async getLastConsultations(patientId: String): Promise<any> {
+    this.path = `consultations/${patientId}/last`;
+    return await this.getData();
   }
 
-  public async postAdmission(body: any): Promise<any> {
+  public async postConsultation(body: any): Promise<any> {
     return await super.postData(body);
   }
 }

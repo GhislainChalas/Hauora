@@ -1,27 +1,19 @@
-import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BaseProvider } from './base.provider';
 
 @Injectable({ providedIn: 'root' })
-export class PatientProvider {
-  private uri = 'http://localhost:3000';
-  private headers = { 'Access-Control-Allow-Origin': '*' };
-
-  constructor(private http: HttpClient) {}
+export class PatientProvider extends BaseProvider {
+  constructor(public override http: HttpClient) {
+    super(http, 'patients');
+  }
 
   public async getPatient(id: string): Promise<any> {
-    return lastValueFrom(
-      this.http.get(`${this.uri}/patients/${id}`, {
-        headers: this.headers,
-      })
-    );
+    this.path = `patients/${id}`;
+    return await super.getData();
   }
 
   public async createPatient(body: any): Promise<any> {
-    return lastValueFrom(
-      this.http.post(`${this.uri}/patients/create`, body, {
-        headers: this.headers,
-      })
-    );
+    return super.postData(body);
   }
 }

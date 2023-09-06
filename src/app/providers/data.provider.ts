@@ -4,28 +4,7 @@ import { lastValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataProvider {
-  private uri = 'http://localhost:3000';
-
-  private headers = { 'Access-Control-Allow-Origin': '*' };
-
-  constructor(private http: HttpClient) {}
-
-  public getUsers(): Promise<any> {
-    return lastValueFrom(
-      this.http.get(`${this.uri}/users`, {
-        headers: this.headers,
-      })
-    );
-  }
-
-  public createUser(body: any): Promise<any> {
-    return lastValueFrom(
-      this.http.post(`${this.uri}/users/create`, {
-        headers: this.headers,
-        body,
-      })
-    );
-  }
+  constructor() {}
 
   public async getSizeData(): Promise<any[]> {
     return [
