@@ -1,0 +1,52 @@
+<div class="row justify-content-around">
+    
+    <mat-card class="col-3">
+        <mat-card-header class="card-title-center mb-1">
+          <mat-card-title> Derniers Evènements</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-2">
+            <table mat-table [dataSource]="events" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="icon">
+                    <th mat-header-cell *matHeaderCellDef> Icone </th>
+                    <td mat-cell *matCellDef="let event"> {{event.icon}} </td>
+                  </ng-container>                
+
+
+                <ng-container matColumnDef="event">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let event"> {{event.event}} </td>
+                  </ng-container>                
+
+                <ng-container matColumnDef="patient">
+                  <th mat-header-cell *matHeaderCellDef> Patient </th>
+                  <td mat-cell *matCellDef="let event"> {{event.patient}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef> Date </th>
+                  <td mat-cell *matCellDef="let event"> {{event.date}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedEventsColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedEventsColumns;"></tr>
+              </table>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="col-5">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab *ngFor="let patient of patients" label="{{patient.lastName}} {{patient.firstName}}"><app-personal-data></app-personal-data></mat-tab>
+          </mat-tab-group>
+
+      </mat-card>
+
+      <mat-card class="col-2">
+        <mat-card-header class="card-title-center mb-1">
+          <mat-card-title> Planning</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-2">
+        </mat-card-content>
+      </mat-card>
+
+</div>

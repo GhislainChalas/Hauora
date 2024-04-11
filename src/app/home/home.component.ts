@@ -9,6 +9,7 @@ import { ModalLostQrCodeComponent } from '../dialog/modal-lost-qr-code/modal-los
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  public isMedicalStaff: Boolean = true;
   constructor(private router: Router, private dialog: MatDialog) {}
 
   public goToCreation(): void {

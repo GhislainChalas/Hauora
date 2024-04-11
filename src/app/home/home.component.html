@@ -1,5 +1,5 @@
 <div class="container-fluid mt-4">
-    <div class="row justify-content-around">
+    <div class="row justify-content-around" *ngIf="!isMedicalStaff">
       <mat-card class="col-3">
         <mat-card-header class="card-title-center mb-1">
           <mat-card-title> QR Code perdu ?</mat-card-title>
@@ -45,4 +45,6 @@
             </mat-card-actions>
           </mat-card>
     </div>
+
+    <app-medical-staff-home *ngIf="isMedicalStaff"></app-medical-staff-home>
 </div>

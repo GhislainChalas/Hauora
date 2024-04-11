@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ResumeComponent } from './resume/resume.component';
 import { ReferenceComponent } from './reference/reference.component';
 import { AdministrationComponent } from './administration/administration.component';
+import { CreateOrganizationComponent } from './create-organization/create-organization.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'scan', component: ScanQrCodeComponent },
   { path: 'resume', component: ResumeComponent },
   { path: 'creation', component: CreationComponent },
+  { path: 'create-organization', component: CreateOrganizationComponent },
 ];
 
 @NgModule({

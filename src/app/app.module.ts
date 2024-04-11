@@ -49,6 +49,8 @@ import { ModalPdfViewerComponent } from './dialog/modal-pdf-viewer/modal-pdf-vie
 import { ModalCreationConfirmationComponent } from './dialog/modal-creation-confirmation/modal-creation-confirmation.component';
 import { ModalCloseAdmissionComponent } from './dialog/modal-close-admission/modal-close-admission.component';
 import { ModalHistoryComponent } from './dialog/modal-history/modal-history.component';
+import { MedicalStaffHomeComponent } from './medical-staff-home/medical-staff-home.component';
+import { CreateOrganizationComponent } from './create-organization/create-organization.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { ModalHistoryComponent } from './dialog/modal-history/modal-history.comp
     ModalCreationConfirmationComponent,
     ModalCloseAdmissionComponent,
     ModalHistoryComponent,
+    MedicalStaffHomeComponent,
+    CreateOrganizationComponent,
   ],
   imports: [
     BrowserModule,
